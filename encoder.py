@@ -9,7 +9,10 @@ MENU_STRING = """Menu
 
 def encode(password):
     return "".join(map(lambda c: str((int(c) + 3) % 10), password))
-
+# Byron Boatright Added Decoder
+def decode(encoded_password):
+    return "".join(map(lambda c: str((int(c) - 3) % 10), encoded_password))
+    
 def main():
     encoded = None
 
@@ -23,7 +26,9 @@ def main():
             encoded = encode(input("Please enter your password to encode: "))
             print("Your password has been encoded and stored!")
         elif selected_option == 2:
-            print("The encoded password is: " + encoded + ", and the original password is (decode() is currently unimplemented).")
+            if encoded is not None:
+                decoded = decode(encoded)
+                print(f"The encoded password is: {encoded}, and the original password is: {decoded}.")
         elif selected_option == 3:
             return
 
